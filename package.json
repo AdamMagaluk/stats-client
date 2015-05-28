@@ -1,5 +1,5 @@
 {
-  "name": "statsd-client",
+  "name": "stats-client",
   "version": "0.1.0",
   "description": "",
   "main": "client.js",

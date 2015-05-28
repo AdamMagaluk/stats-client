@@ -30,10 +30,11 @@ Client.prototype.decrement = function(bucket, dimensions) {
 };
 
 Client.prototype.gauge = function(bucket, value, dimensions) {
-    this.send(bucket, value + '|g', dimensions);
+  this.send(bucket, value + '|g', dimensions);
 };
 
 Client.prototype.send = function(bucket, value, dimensions) {
+  dimensions = dimensions || {};
   for (var k in this.dimensions) {
     if (!dimensions.hasOwnProperty(k)) {
       dimensions[k] = this.dimensions[k];
