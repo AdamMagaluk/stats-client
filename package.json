@@ -1,11 +1,19 @@
 {
   "name": "stats-client",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Based on https://github.com/spreaker/nodejs-statsd-client but includes a way of interpreting dimensions that are not includes in the standard dot notation.",
   "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdamMagaluk/stats-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AdamMagaluk/stats-client/issues"
+  },
+  "homepage": "https://github.com/AdamMagaluk/stats-client"
 }
