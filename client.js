@@ -61,7 +61,6 @@ Client.prototype.send = function(bucket, value, dimensions) {
   
   
   var buffer = new Buffer(key + ':' + value);
-  console.log(buffer.toString())
   
   // Send (ignore errors)
   this.socket.send(buffer, 0, buffer.length, this.port, this.host, function (err, bytes) {});
