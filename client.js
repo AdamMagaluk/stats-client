@@ -12,6 +12,7 @@ var Client = module.exports = function(hoststring, dimensions, options) {
   this.port = Number(split[1]);
   this.dimensions = dimensions || {};
   this.useTelegrafFormat = !!options.telegraf;
+  this.prefix = options.prefix;
 
   // Create socket (ignore errors)
   this.socket = dgram.createSocket('udp4');
@@ -39,6 +40,10 @@ Client.prototype.gauge = function(bucket, value, dimensions) {
 };
 
 Client.prototype.send = function(bucket, value, dimensions) {
+  if (this.prefix) {
+    bucket = this.prefix + '.' + bucket;
+  }
+
   dimensions = dimensions || {};
   for (var k in this.dimensions) {
     if (!dimensions.hasOwnProperty(k)) {
