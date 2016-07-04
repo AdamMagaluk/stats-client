@@ -13,6 +13,7 @@ var Client = module.exports = function(hoststring, dimensions, options) {
   this.dimensions = dimensions || {};
   this.useTelegrafFormat = !!options.telegraf;
   this.prefix = options.prefix;
+  this.debug = !!options.debug;
 
   // Create socket (ignore errors)
   this.socket = dgram.createSocket('udp4');
@@ -63,7 +64,10 @@ Client.prototype.send = function(bucket, value, dimensions) {
     var key = url.format({ pathname: bucket, query: dimensions });
   }
 
-  
+
+  if (this.debug) {
+    console.log(key + ':' + value);
+  }
   
   var buffer = new Buffer(key + ':' + value);
   

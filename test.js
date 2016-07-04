@@ -1,6 +1,6 @@
 var Client = require('./client');
 
-var c = new Client('localhost:8125', { instance: 'i-123' }, { telegraf: true });
+var c = new Client('localhost:8125', { instance: 'i-123' }, { telegraf: true, prefix: 'link' });
 
 setInterval(function() {
   var t = Math.round(Math.random() * 10);
