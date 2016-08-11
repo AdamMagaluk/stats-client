@@ -41,6 +41,8 @@ Client.prototype.gauge = function(bucket, value, dimensions) {
 };
 
 Client.prototype.send = function(bucket, value, dimensions) {
+  var self = this;
+  
   if (this.prefix) {
     bucket = this.prefix + '.' + bucket;
   }
@@ -51,6 +53,10 @@ Client.prototype.send = function(bucket, value, dimensions) {
       dimensions[k] = this.dimensions[k];
     }
   }
+
+  Object.keys(dimensions).forEach(function(k) {
+    dimensions[k] = self._sanitize(dimensions[k]);
+  });
 
   if (this.useTelegrafFormat) {
     var key = bucket;
@@ -73,4 +79,8 @@ Client.prototype.send = function(bucket, value, dimensions) {
   
   // Send (ignore errors)
   this.socket.send(buffer, 0, buffer.length, this.port, this.host, function (err, bytes) {});
+};
+
+Client.prototype._sanitize = function(value) {
+  return value.replace(/\:|\|/g, '_');
 };
